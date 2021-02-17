@@ -35,15 +35,15 @@ functions:
           path: api/token/{code}
           method: get
           cors:
-                      origin: '*'
-                      headers:
-                          - Content-Type
-                          - X-Amz-Date
-                          - Authorization
-                          - X-Api-Key
-                          - X-Amz-Security-Token
-                          - X-Amz-User-Agent
-                          - x-requested-with
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - x-requested-with
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
@@ -51,12 +51,32 @@ functions:
         path: api/get-events/{access_token}
         method: get
         cors:
-                      origin: '*'
-                      headers:
-                          - Content-Type
-                          - X-Amz-Date
-                          - Authorization
-                          - X-Api-Key
-                          - X-Amz-Security-Token
-                          - X-Amz-User-Agent
-                          - x-requested-with
+          origin: '*'
+          headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - x-requested-with
+resources:
+    Resources:
+        GatewayResponseDefault4XX:
+            Type: 'AWS::ApiGateway::GatewayResponse'
+            Properties:
+                ResponseParameters:
+                    gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+                    gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+                ResponseType: DEFAULT_4XX
+                RestApiId:
+                    Ref: 'ApiGatewayRestApi'
+        GatewayResponseDefault5XX:
+            Type: 'AWS::ApiGateway::GatewayResponse'
+            Properties:
+                ResponseParameters:
+                    gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+                    gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
+                ResponseType: DEFAULT_5XX
+                RestApiId:
+                    Ref: 'ApiGatewayRestApi'
