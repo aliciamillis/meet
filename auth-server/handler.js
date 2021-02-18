@@ -94,25 +94,24 @@ module.exports.getAccessToken = async (event) => {
       };
     });
 };
-module.exports.getCalendarEvents = async (event) => {
+module.exports.getCalandarEvents = async (event) => {
+  // The values used to instantiate the OAuthClient are at the top of the file
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
     redirect_uris[0]
   );
-  const access_token = decodeURIComponent(
-    `${event.pathParameters.access_token}`
-  );
-  oAuth2Client.setCredentials({
-    access_token,
-  });
+  // Get authorization code from the URL query
+  const access_token = `${event.pathParameters.access_token}`;
+  //@careerfoundry.com
+  oAuth2Client.setCredentials({ access_token });
   return new Promise((resolve, reject) => {
     calendar.events.list(
       {
-        calendarId: calendar_id,
+        calendarId: calendar_id.trim(),
         auth: oAuth2Client,
         timeMin: new Date().toISOString(),
-        maxResults: 32,
+        maxResults: event.pathParameters.max_results || 2,
         singleEvents: true,
         orderBy: "startTime",
       },
@@ -137,10 +136,14 @@ module.exports.getCalendarEvents = async (event) => {
       };
     })
     .catch((err) => {
+      // Handle error
       console.error(err);
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify(err),
       };
     });
-};
+}
