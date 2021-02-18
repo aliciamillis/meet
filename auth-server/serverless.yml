@@ -3,6 +3,8 @@ service: auth-server
 provider:
   name: aws
   runtime: nodejs12.x
+  apiGateway:
+    shouldStartNameWithService: true
   region: ca-central-1
   timeout: 60
   environment:
