@@ -45,8 +45,7 @@ module.exports.getAuthURL = async () => {
   return {
     statusCode: 200,
     headers: {
-      "Access-Control-Allow-Headers": "*",
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify({
       authUrl: authUrl,
@@ -101,9 +100,10 @@ module.exports.getCalandarEvents = async (event) => {
     redirect_uris[0]
   );
   // Get authorization code from the URL query
-  const access_token = `${event.pathParameters.access_token}`;
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
   //@careerfoundry.com
   oAuth2Client.setCredentials({ access_token });
+
   return new Promise((resolve, reject) => {
     calendar.events.list(
       {
@@ -145,4 +145,4 @@ module.exports.getCalandarEvents = async (event) => {
         body: JSON.stringify(err),
       };
     });
-}
+};
