@@ -28,8 +28,8 @@ functions:
           path: api/token/{code}
           method: get
          
-  getCalandarEvents:
-    handler: handler.getCalandarEvents
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
     events:
       - http:
           path: api/get-events/{access_token}/{max_results}
