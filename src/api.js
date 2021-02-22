@@ -86,7 +86,7 @@ const checkToken = async (accessToken) => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    `"https://82y29j2ihl.execute-api.ca-central-1.amazonaws.com/dev/api/token/${encodeCode}`
+    `https://82y29j2ihl.execute-api.ca-central-1.amazonaws.com/dev/api/token/${encodeCode}`
   )
     .then((res) => {
       return res.json();
