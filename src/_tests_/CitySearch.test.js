@@ -64,6 +64,12 @@ describe('<CitySearch /> component', () => {
     expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
   });
 
+  test("selecting CitySearch input reveals the suggestion list", () => {
+    CitySearchWrapper.find('.city').simulate('focus');
+    expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
+  });
+
   test("selecting a suggestion should hide the suggestions list", () => {
     CitySearchWrapper.setState({
       query: 'Berlin',
