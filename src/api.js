@@ -3,28 +3,12 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 
 export const extractLocations = (events) => {
-  console.log("checking events: ",events)
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
 
-// export const getEvents = async () => {
-//   NProgress.start();
-//
-//   if (window.location.href.startsWith('http://localhost')) {
-//     NProgress.done();
-//     return mockData;
-//   }
-//
-//   if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
-//     const events = localStorage.getItem("lastEvents");
-//     NProgress.done()
-//     return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events) };
-//     return JSON.parse(events).events;
-//   }
 
-  // const token = await getAccessToken();
 export const getEvents = async () => {
   NProgress.start();
 
@@ -32,6 +16,13 @@ export const getEvents = async () => {
     NProgress.done();
     return { events: mockData, locations: extractLocations(mockData) };
   }
+
+  //   if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
+//     const events = localStorage.getItem("lastEvents");
+//     NProgress.done()
+//     return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events) };
+//     return JSON.parse(events).events;
+//   }
 
   const token = await getAccessToken();
 
