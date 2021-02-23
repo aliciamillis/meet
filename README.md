@@ -35,19 +35,22 @@ Scenario 2: User can expand an event to see its details
 Scenario 3: User can collapse an event to hide its details 
 
 SCENARIO 1: An event element is collapsed by default 
-Given user hasn’t opened event element
-When the user opens app event element is closed 
-Then the user should see main page 
+Given list event element has been loaded
+And app loaded 
+When the user hasn’t clicked details button yet  
+Then the event element is collapsed by default 
 
 SCENARIO 2: User can expand an event to see its details 
-Given user hasn’t opened event element
-When the user opens element
-Then the user should see a list of all upcoming events
+Given app is loaded 
+And list of events has been loaded 
+When the user clicks on details button
+Then the element should open to show details
 
 SCENARIO 3: User can collapse an event to hide its details 
-Given user has opened event element
-When the user clicks x to close element
-Then the user should see main page 
+Given app is loaded 
+And event element is expanded 
+When the user clicks on hide details button 
+Then element should collapse, hiding details 
 
 
 USER STORY FEATURE 3
@@ -62,13 +65,14 @@ Scenario 2: User can change the numbers of events they want to see
 
 SCENARIO 1: When user hasn’t specified a number, 32 is the default number 
 Given user hasn’t specified a number
-When the user opens app event element 
+When app is loaded 
 Then the user should see 32 events shown by default 
 
 SCENARIO 2: User can change the numbers of events they want to see 
 Given user hasn’t specified a number
 When the user can change number of events 
 Then the user should see event element with given number of events user choose 
+
 
 
 USER STORY FEATURE 4
