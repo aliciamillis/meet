@@ -3,31 +3,41 @@ import axios from 'axios';
 import NProgress from 'nprogress';
 
 export const extractLocations = (events) => {
+  console.log("checking events: ",events)
   var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
 
+// export const getEvents = async () => {
+//   NProgress.start();
+//
+//   if (window.location.href.startsWith('http://localhost')) {
+//     NProgress.done();
+//     return mockData;
+//   }
+//
+//   if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
+//     const events = localStorage.getItem("lastEvents");
+//     NProgress.done()
+//     return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events) };
+//     return JSON.parse(events).events;
+//   }
+
+  // const token = await getAccessToken();
 export const getEvents = async () => {
   NProgress.start();
 
-  if (window.location.href.startsWith('http://localhost')) {
+  if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
-    return mockData;
-  }
-
-  if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
-    const events = localStorage.getItem("lastEvents");
-    NProgress.done()
-    //return { events: JSON.parse(events).events, locations: extractLocations(JSON.parse(events).events) };
-    return JSON.parse(events).events;
+    return { events: mockData, locations: extractLocations(mockData) };
   }
 
   const token = await getAccessToken();
 
   if (token) {
     removeQuery();
-    const url = `https://82y29j2ihl.execute-api.ca-central-1.amazonaws.com/dev/api/get-events/${token}`;
+    const url = `https://82y29j2ihl.execute-api.ca-central-1.amazonaws.com/dev/api/get-events/${token}/32`;
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
@@ -35,7 +45,7 @@ export const getEvents = async () => {
       localStorage.setItem("locations", JSON.stringify(locations));
     }
     NProgress.done();
-    return result.data.events;
+    return { events: result.data.events, locations };
   }
 };
 
