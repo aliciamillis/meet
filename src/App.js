@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <Container>
         <Card>
-          <Card.Text>Meet App</Card.Text>
+          <Card.Text><h1 className="app-name">Meet App</h1></Card.Text>
         </Card>
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <EventList events={filtered.length ? filtered : events} />
