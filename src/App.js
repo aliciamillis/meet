@@ -65,6 +65,7 @@ class App extends Component {
     let { filtered, locations, events, numberOfEvents } = this.state
     return (
       <Container>
+        <input type="text"> Meet App </input>
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <EventList events={filtered.length ? filtered : events} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}

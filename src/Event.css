@@ -17,8 +17,9 @@
 
 .Event .detailsBtn {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  font-family: 'Comfortaa', cursive;
+  background-color: #595e63;
+  border-color: #1c1d1f;
 
   display: inline-block;
   font-weight: 400;
