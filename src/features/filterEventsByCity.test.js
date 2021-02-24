@@ -6,6 +6,7 @@ import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 
+let locations = extractLocations(mockData);
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
@@ -22,15 +23,14 @@ defineFeature(feature, test => {
 
     then("the user should see the list of upcoming events", () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length);
     });
   });
 
   test("User should see a list of suggestions when they search for a city", ({ given, when, then }) => {
     let CitySearchWrapper, locations;
     given("the main page is open", () => {
-      locations = extractLocations(mockData);
-      CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />);  //need to export extractLocations() from api.js
+      CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} locations={locations} />);
     });
 
     when("the user starts typing in the city textbox", () => {
@@ -64,7 +64,7 @@ defineFeature(feature, test => {
     });
 
     and("the user should receive a list of upcoming events in that city", () => {
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.find('.event').hostNodes()).toHaveLength(mockData.length);
     });
   });
 
