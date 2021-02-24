@@ -4,6 +4,8 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import { getEvents } from './api';
 import './nprogress.css';
+import NumberOfEvents from './NumberOfEvents';
+import { Container } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -12,7 +14,7 @@ class App extends Component {
     currentLocation: "all",
     locations: [],
     filtered: [],
-    numberOfEvents: 32
+    numberOfEvents: 32,
   };
 
 
@@ -21,8 +23,8 @@ class App extends Component {
     getEvents().then((response) => {
       if (this.mounted) {
         this.setState({
-          events : response.events,
-          locations: response.locations
+          events: response.events,
+          locations: response.locations,
         });
       }
     });
@@ -36,9 +38,9 @@ class App extends Component {
     getEvents().then((response) => {
       const { currentLocation, numberOfEvents } = this.state;
       const locationEvents =
-          currentLocation === "all"
-              ? response.events
-              : response.events.filter((event) => event.location === location);
+        currentLocation === "all"
+          ? response.events
+          : response.events.filter((event) => event.location === location);
 
       let events = [];
       if (!locationEvents.length) {
@@ -54,14 +56,20 @@ class App extends Component {
     });
   };
 
+  updateNumberOfEvents = (number) => {
+    this.setState({ numberOfEvents: number });
+    this.updateEvents("");
+  };
 
   render() {
-    let {filtered, locations, events} = this.state
+    let { filtered, locations, events, numberOfEvents } = this.state
     return (
-      <div className="App">
+      <Container>
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <EventList events={filtered.length ? filtered : events} />
-      </div>
+        <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
+          length={numberOfEvents} />
+      </Container>
     );
   }
 }
