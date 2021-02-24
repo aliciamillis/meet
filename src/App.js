@@ -5,7 +5,7 @@ import CitySearch from './CitySearch';
 import { getEvents } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
-import { Container } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -65,7 +65,9 @@ class App extends Component {
     let { filtered, locations, events, numberOfEvents } = this.state
     return (
       <Container>
-        <Text>Meet App</Text>
+        <Card>
+          <Card.Text>Meet App</Card.Text>
+        </Card>
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <EventList events={filtered.length ? filtered : events} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
