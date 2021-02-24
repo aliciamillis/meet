@@ -1,5 +1,5 @@
 import React from "react";
-import "./Event.css";
+import './Event.css';
 import { Card } from "react-bootstrap";
 class Event extends React.Component {
   state = {

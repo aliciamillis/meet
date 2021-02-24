@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Form } from 'react-bootstrap';
+import './App.css';
+
 
 class CitySearch extends Component {
   state = {
@@ -32,14 +35,14 @@ class CitySearch extends Component {
 
 
   render() {
+    let { value } = this.state;
     return (
       <div className="CitySearch">
-        <input
+        <Form.Control
           type="text"
           className="city"
-          value={this.state.query}
+          value={value}
           onChange={this.handleInputChanged}
-          onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
         <ul
           className={

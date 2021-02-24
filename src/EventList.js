@@ -3,15 +3,15 @@ import Event from './Event';
 
 class EventList extends Component {
   render() {
-    const { events } = this.props;
+    let { events } = this.props;
+    // console.log(events);
     return (
-      <ul className="EventList">
-        {events.map(event =>
-          <li key={event.id}>
-            <Event event={event} />
-          </li>
-        )}
-      </ul>
+      <div className="EventList">
+        {events &&
+          events.map((event, id) => (
+            <Event key={event.id} event={event} id={id} />
+          ))}
+      </div>
     );
   }
 }
