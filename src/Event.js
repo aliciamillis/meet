@@ -1,42 +1,45 @@
-import React, { Component } from "react";
-
-class Event extends Component {
+import React from "react";
+import "./Event.css";
+import { Card } from "react-bootstrap";
+class Event extends React.Component {
   state = {
-    showHideDetails: false,
+    show: false,
   };
 
-  handleShowHideButton = () => {
-    if (this.state.showHideDetails === true) {
-      this.setState({ showHideDetails: false });
-    } else {
-      this.setState({ showHideDetails: true });
-    }
+  handleClick = () => {
+    this.setState({ show: !this.state.show });
   };
-
   render() {
-    const { event } = this.props;
     return (
-      <div className='event-container'>
-        <h1>{event.summary}</h1>
-        <p>{event.start.dateTime}</p>
-        <p className='locations'>{event.location}</p>
+      <Card className="Event" id={this.props.id}>
+        <Card.Body>
+          <div className="dates">
+            <div className="event__str">
 
-        {this.state.showHideDetails && (
-          <div className='event-details'>
-            <h2>About event:</h2>
-            <a href={event.htmlLink}>See Details on Google Calendar</a>
-            <p>{event.description}</p>
+            </div>
+            <div className="event__end">
+
+            </div>
           </div>
-        )}
+          <div className="event__summary">
+            <h3>{this.props.event.summary}</h3>
+            <div className="event__location">{this.props.event.location}</div>
+            <button className="detailsBtn" onClick={this.handleClick}>
+              Details
+            </button>
+          </div>
 
-        <button
-          className='show-hide-btn'
-          onClick={() => this.handleShowHideButton()}
-        >
-          {!this.state.showHideDetails ? 'show details' : 'hide-details'}
-        </button>
-      </div>
+          {this.state.show && (
+            <div className="EventDetail">
+              <div className="event__description">
+                {this.props.event.description}{" "}
+              </div>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
     );
   }
 }
+
 export default Event;
