@@ -65,13 +65,11 @@ class App extends Component {
     let { filtered, locations, events, numberOfEvents } = this.state
     return (
       <Container>
-        <Card>
-          <Card.Text><h1 className="app-name">Meet App</h1></Card.Text>
-        </Card>
+        <h1 className="app-name">Meet App</h1>
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
-        <EventList events={filtered.length ? filtered : events} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
           length={numberOfEvents} />
+        <EventList events={filtered.length ? filtered : events} />
       </Container>
     );
   }

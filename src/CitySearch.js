@@ -38,6 +38,7 @@ class CitySearch extends Component {
     let { value } = this.state;
     return (
       <div className="CitySearch">
+        Search for events in:
         <Form.Control
           type="text"
           className="city"

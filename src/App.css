@@ -3,11 +3,12 @@
 .App {
   text-align: center;
   padding: 2% 5%;
-  background-color: #bcdcdb;
+  background-color: #e7c4a7;
 }
 
 .App * {
   box-sizing: border-box;
+  background-color: #e7c4a7;
 }
 
 ul {
