@@ -10,27 +10,16 @@ class Event extends React.Component {
     this.setState({ show: !this.state.show });
   };
 
-  // formatStartTime = () => {
-  //   const time = this.props.event.start.dateTime;
-  //   const formattedStartTime = moment(time).format('dddd, MMMM, Do YYYY, h:MM a');
-  //   return <span className='start-dateTime'>{`${formattedStartTime}`}</span>
-  // }
-
-  // formatEndTime = () => {
-  //   const time = this.props.event.end.dateTime;
-  //   const formattedEndTime = moment(time).format('dddd, MMMM, Do YYYY, h:MM a');
-  //   return <span className='start-dateTime'>{`${formattedEndTime}`}</span>
-  // }
   render() {
     return (
       <Card className="Event" id={this.props.id}>
         <Card.Body>
           <div className="dates">
             <div className="event__str">
-              {/* <span className='time-label'>Starts @ </span>{this.formatStartTime()} */}
+
             </div>
             <div className="event__end">
-              {/* <span className='time-label'>Ends @ </span>{this.formatEndTime()} */}
+
             </div>
           </div>
           <div className="event__summary">
@@ -46,9 +35,7 @@ class Event extends React.Component {
               <div className="event__description">
                 {this.props.event.description}{" "}
               </div>
-              <div className='event__oragnizer'>
-                Get in touch with us about this event at: <span className='org-email'>{event.organizer.email}</span>
-              </div>
+
             </div>
           )}
         </Card.Body>
