@@ -12,6 +12,17 @@ export const extractLocations = (events) => {
 export const getEvents = async () => {
   NProgress.start();
 
+  if (!navigator.onLine && !window.location.href.startsWith('http://localhost')) {
+    const storedevents = localStorage.getItem('lastEvents');
+    const storedlocations = localStorage.getItem('locations');
+    NProgress.done();
+
+    return {
+      events: JSON.parse(storedevents).events,
+      locations: JSON.parse(storedlocations),
+    };
+  }
+
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
     return { events: mockData, locations: extractLocations(mockData) };
