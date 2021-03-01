@@ -47,7 +47,7 @@ class CitySearch extends Component {
     let { value } = this.state;
     return (
       <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
+
         Search for events in:
         <Form.Control
           type="text"
@@ -62,6 +62,7 @@ class CitySearch extends Component {
               : "display-none"
           }
         >
+          <InfoAlert text={this.state.infoText} />
           {this.state.suggestions.map((suggestion) => (
             <li
               className="suggested"
