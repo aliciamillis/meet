@@ -5,7 +5,7 @@ import CitySearch from './CitySearch';
 import { getEvents } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
-import Login from './Login';
+// import Login from './Login';
 import EventGenre from './EventGenre';
 import { Container, Card } from 'react-bootstrap';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -79,7 +79,7 @@ class App extends Component {
     return (
       <Container>
         <h1 className="app-name">Meet App</h1>
-        <Login />
+        {/* <Login /> */}
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
           length={numberOfEvents} />
