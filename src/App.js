@@ -5,6 +5,7 @@ import CitySearch from './CitySearch';
 import { getEvents } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
+import EventGenre from './EventGenre';
 import { Container, Card } from 'react-bootstrap';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -80,19 +81,23 @@ class App extends Component {
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
           length={numberOfEvents} />
-        <ResponsiveContainer height={400} >
-          <ScatterChart
-            margin={{
-              top: 20, right: 20, bottom: 20, left: 20,
-            }}
-          >
-            <CartesianGrid />
-            <XAxis type="category" dataKey="city" name="city" />
-            <YAxis type="number" dataKey="number" name="number of events" allowDeciamls={false} />
-            <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8884d8" />
-          </ScatterChart>
-        </ResponsiveContainer>
+        <h4>Events in each day</h4>
+        <div className="data-vis-wrapper">
+          <EventGenre events={events} />
+          <ResponsiveContainer height={400} >
+            <ScatterChart
+              margin={{
+                top: 20, right: 20, bottom: 20, left: 20,
+              }}
+            >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis type="number" dataKey="number" name="number of events" allowDeciamls={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
         <EventList events={filtered.length ? filtered : events} />
       </Container>
     );
