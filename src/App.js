@@ -81,16 +81,16 @@ class App extends Component {
         <CitySearch locations={locations} updateEvents={this.updateEvents} />
         <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents}
           length={numberOfEvents} />
-        <h4>Events in each day</h4>
+        <h4>Events each day</h4>
         <div className="data-vis-wrapper">
-          <EventGenre events={events} />
+          <EventGenre events={this.state.events} />
           <ResponsiveContainer height={400} >
             <ScatterChart
               margin={{
                 top: 20, right: 20, bottom: 20, left: 20,
               }}
             >
-              <CartesianGrid />
+              <CartesianGrid strokeDasharray="3 3" />
               <XAxis type="category" dataKey="city" name="city" />
               <YAxis type="number" dataKey="number" name="number of events" allowDeciamls={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
