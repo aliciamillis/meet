@@ -1,6 +1,12 @@
 # meet
 an app to find local events to meet up at
 
+Meet is an serverless, progressive web application with React, using test-driven develpoment techniques connecting to Google Calendar API.
+
+View FULL Case Study here:
+
+https://www.canva.com/design/DAEX7D8OTb0/sPg4Q-8uUckl6Tdqrjpo_A/view?utm_content=DAEX7D8OTb0&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
+
 MEET app User Stories and Gherkin syntax 
 
 
