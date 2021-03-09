@@ -5,10 +5,11 @@ import CitySearch from './CitySearch';
 import { getEvents } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
-// import Login from './Login';
+import Login from './Login';
 import EventGenre from './EventGenre';
 import { Container, Card } from 'react-bootstrap';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { getEvents, checkToken } from './api';
 
 
 class App extends Component {
@@ -18,19 +19,26 @@ class App extends Component {
     locations: [],
     filtered: [],
     numberOfEvents: 32,
+    tokenCheck: false,
   };
 
 
-  componentDidMount() {
+  async componentDidMount() {
+    const accessToken =
+      localStorage.getItem("access_token");
+    const validToken = accessToken !== null ? await
+      checkToken(accessToken) : false;
+    this.setState({ tokenCheck: validToken });
+    if (validToken === true) this.updateEvents()
+    const searchParams = new
+      URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
     this.mounted = true;
-    getEvents().then((response) => {
-      if (this.mounted) {
-        this.setState({
-          events: response.events,
-          locations: response.locations,
-        });
-      }
-    });
+    if (code && this.mounted === true && validToken
+      === false) {
+      this.setState({ tokenCheck: true });
+      this.updateEvents()
+    }
   }
 
   componentWillUnmount() {
