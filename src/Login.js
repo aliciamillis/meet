@@ -2,7 +2,7 @@ import React from "react";
 
 
 function Login() {
-  return tokenCheck === false ? (
+  return (
     <div className='App'>
       <h1>Welcome to the Meet App</h1>
       <h2>Please Read the Following</h2>
@@ -29,7 +29,7 @@ function Login() {
         Privacy Policy
       </a>
     </div>
-  )
-};
+  );
+}
 
 export default Login;
