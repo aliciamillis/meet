@@ -85,15 +85,14 @@ const checkToken = async (accessToken) => {
     .then((res) => res.json())
     .catch((error) => error.json());
 
-  return result.error ? false : true;
+  return result;
 }
 
 const getToken = async (code) => {
   removeQuery();
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    `https://f1k17pnw2a.execute-api.us-east-1.amazonaws.c
-om/dev/api/token/${encodeCode}`
+    `https://82y29j2ihl.execute-api.ca-central-1.amazonaws.com/dev/api/token/${encodeCode}`
   )
     .then((res) => {
       return res.json();
