@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { getEvents } from './api';
+import { getEvents, checkToken } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
 import Login from './Login';
 import EventGenre from './EventGenre';
 import { Container, Card } from 'react-bootstrap';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { getEvents, checkToken } from './api';
+
 
 
 class App extends Component {
