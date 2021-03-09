@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { getEvents, checkToken } from './api';
+import { getEvents } from './api';
 import './nprogress.css';
 import NumberOfEvents from './NumberOfEvents';
 import Login from './Login';
